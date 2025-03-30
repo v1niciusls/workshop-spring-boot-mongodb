@@ -24,4 +24,17 @@ public class UserService {
         return user.orElseThrow(() -> new ObjectNotFoundException("Usuário nao encontrado"));
     }
 
+
+    public User insert(User user){
+        return userRepository.insert(user);
+    }
+
+    public void delete(String id){
+        if(!userRepository.existsById(id)){
+            throw new ObjectNotFoundException("Nao encontrado");
+        }
+         userRepository.deleteById(id);
+    }
+
+
 }
