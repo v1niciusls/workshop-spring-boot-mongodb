@@ -1,7 +1,9 @@
 package com.viniciuslacerda.workshopmongo.services;
 
+import com.viniciuslacerda.workshopmongo.domain.Post;
 import com.viniciuslacerda.workshopmongo.domain.User;
 import com.viniciuslacerda.workshopmongo.dto.UserDTO;
+import com.viniciuslacerda.workshopmongo.repository.PostRepository;
 import com.viniciuslacerda.workshopmongo.repository.UserRepository;
 import com.viniciuslacerda.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     public List<User> findAll(){
        return userRepository.findAll();
     }
+
 
     public User findById(String id){
        Optional<User> user = userRepository.findById(id);
@@ -46,14 +50,15 @@ public class UserService {
     }
 
     private void updateObj(User newObj, User obj) {
-
         newObj.setEmail(obj.getEmail());
         newObj.setName(obj.getName());
-
-
     }
 
     public User fromDTO(UserDTO objDto) {
         return new User(null, objDto.getName(), objDto.getEmail());
     }
+
+
+
+
 }
